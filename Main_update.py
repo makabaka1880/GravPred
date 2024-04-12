@@ -75,11 +75,11 @@ for epoch in range(num_epochs):
         loss.backward()  # Backward propagation
         optimizer.step()  # Update the parameters
         running_loss += loss.item()
-    with open("loss_train/loss_train_" + str(epoch) + ".json", 'w') as file:
+    with open("loss/train/epoch" + str(epoch) + ".json", 'w') as file:
         file.write(str(loss_train))
         file.close()
 
-    with open("loss_val/loss_train" + str(epoch) + ".json", 'w') as file:
+    with open("loss/val/epoch" + str(epoch) + ".json", 'w') as file:
         file.write(str(loss_val))
         file.close()
 
