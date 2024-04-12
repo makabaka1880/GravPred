@@ -5,7 +5,7 @@ import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
-from rich import *
+# from rich import *
 
 # MARK: Some inits
 class CustomDataset(Dataset):
@@ -75,6 +75,13 @@ for epoch in range(num_epochs):
         loss.backward()  # Backward propagation
         optimizer.step()  # Update the parameters
         running_loss += loss.item()
+    with open("loss_train/loss_train_" + str(epoch) + ".json", 'w') as file:
+        file.write(str(loss_train))
+        file.close()
+
+    with open("loss_val/loss_train" + str(epoch) + ".json", 'w') as file:
+        file.write(str(loss_val))
+        file.close()
 
     # Validating
     net.eval()
@@ -104,5 +111,3 @@ with torch.no_grad():
     output = net(inputs)
     print(output)
 
-print(loss_train)
-print(loss_val)
